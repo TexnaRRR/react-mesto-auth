@@ -6,7 +6,5 @@
   -webkit-font-smoothing: antialiased;
   position: relative;
   flex-grow: 1;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
   padding: 0 16px;
 }

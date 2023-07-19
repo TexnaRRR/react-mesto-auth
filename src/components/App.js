@@ -34,7 +34,7 @@ function App() {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   const [tooltip, setTooltip] = React.useState({image: '', message: ''});
   const [cards, setCards] = React.useState([]);
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [selectedCard, setSelectedCard] = React.useState(null);
   const [cardId, setCardId] = React.useState('');
 
   React.useEffect(() => {
@@ -144,6 +144,8 @@ function App() {
       });
   }
 
+  const isOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isConfirmDeletePopupOpen || selectedCard
+
   React.useEffect(() => {
     function handleEscPress(evt) {
       if (evt.key === 'Escape') {
@@ -156,7 +158,7 @@ function App() {
         closeAllPopups();
       }
     };
-    if (isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isConfirmDeletePopupOpen || selectedCard) {
+    if (isOpen) {
       document.addEventListener('keydown', handleEscPress);
       document.addEventListener('click', handleOverlayClick);
       return () => {
@@ -164,7 +166,8 @@ function App() {
         document.removeEventListener('click', handleOverlayClick);
       }
     }
-  }, [isEditProfilePopupOpen, isAddPlacePopupOpen, isEditAvatarPopupOpen, isConfirmDeletePopupOpen, selectedCard])
+  }, [isOpen])
+
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
