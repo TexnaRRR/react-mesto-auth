@@ -205,12 +205,12 @@ function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setConfirmDeletePopupOpen(false);
+    setInfoTooltipOpen(false);
     setSelectedCard(null);
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="Root">
         <div className="page">
           <Header loggedIn={loggedIn} handleSignOut={handleSignOut} userEmail={userEmail}/>
           <Routes>
@@ -238,14 +238,13 @@ function App() {
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
           <ConfirmDeletePopup isOpen={isConfirmDeletePopupOpen} onClose={closeAllPopups}
                               onConfirmDelete={handleCardDelete}/>
-          <ImagePopup
+          {selectedCard && <ImagePopup
             card={selectedCard}
-            onClose={closeAllPopups}
-          />
+            onClose={closeAllPopups} />
+          }
           <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} tooltip={tooltip}/>
         </div>
 
-      </div>
     </CurrentUserContext.Provider>
   );
 }

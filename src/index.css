@@ -70,3 +70,4 @@
 @import url(blocks/menu/__user-email/menu__user-email.css);
 @import url(blocks/tooltip/tooltip.css);
 @import url(blocks/tooltip/__image/tooltip__image.css);
+@import url(vendor/main.css);
